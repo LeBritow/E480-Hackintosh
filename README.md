@@ -1,9 +1,25 @@
 # E480 Hackintosh — macOS Ventura / Sonoma via OpenCore
 
-[![macOS](https://img.shields.io/badge/macOS-Ventura%2013.7-brightgreen.svg)](https://developer.apple.com/documentation/macos-release-notes)
-[![macOS](https://img.shields.io/badge/macOS-Sonoma%2014.7-brightgreen.svg)](https://developer.apple.com/documentation/macos-release-notes)
-[![OpenCore](https://img.shields.io/badge/OpenCore-1.0.7-blue)](https://github.com/acidanthera/OpenCorePkg)
-[![License](https://img.shields.io/badge/license-MIT-purple)](/LICENSE)
+<p align="center">
+  <strong>Status:</strong> Maintained
+  <br />
+  <strong>Version:</strong> 1.2.0
+  <br />
+  <strong>Bootloader:</strong> OpenCore 1.0.7
+  <br />
+  [![macOS](https://img.shields.io/badge/macOS-Ventura%2013.7-brightgreen.svg)](https://developer.apple.com/documentation/macos-release-notes)
+  [![macOS](https://img.shields.io/badge/macOS-Sonoma%2014.7-brightgreen.svg)](https://developer.apple.com/documentation/macos-release-notes)
+  [![OpenCore](https://img.shields.io/badge/OpenCore-1.0.7-blue)](https://github.com/acidanthera/OpenCorePkg)
+  [![License](https://img.shields.io/badge/license-MIT-purple)](/LICENSE)
+  <br />
+  <a href="https://github.com/LeBritow/E480-Hackintosh/releases"><strong>Download now »</strong></a>
+  <br />
+  <a href="https://github.com/LeBritow/E480-Hackintosh/issues">Report Bug</a>
+  ·
+  <a href="https://github.com/LeBritow/E480-Hackintosh/blob/main/CHANGELOG.md">View Changelog</a>
+  ·
+  <a href="https://github.com/LeBritow/E480-Hackintosh/blob/main/hackintosh-e480/03-installation/README.md">Install Guide</a>
+</p>
 
 OpenCore EFI for the **Lenovo ThinkPad E480** running **macOS Ventura 13.7** and **Sonoma 14.7**. Everything here was verified on my own E480 (i5-8250U, UHD 620, 24 GB, no dGPU) — this is the EFI I boot daily.
 
