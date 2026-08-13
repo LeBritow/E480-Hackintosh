@@ -7,10 +7,10 @@
   <br />
   <strong>Bootloader:</strong> OpenCore 1.0.7
   <br />
-  [![macOS](https://img.shields.io/badge/macOS-Ventura%2013.7-brightgreen.svg)](https://developer.apple.com/documentation/macos-release-notes)
-  [![macOS](https://img.shields.io/badge/macOS-Sonoma%2014.7-brightgreen.svg)](https://developer.apple.com/documentation/macos-release-notes)
-  [![OpenCore](https://img.shields.io/badge/OpenCore-1.0.7-blue)](https://github.com/acidanthera/OpenCorePkg)
-  [![License](https://img.shields.io/badge/license-MIT-purple)](/LICENSE)
+  <img src="https://img.shields.io/badge/macOS-Ventura%2013.7-brightgreen.svg" alt="macOS Ventura 13.7">
+  <img src="https://img.shields.io/badge/macOS-Sonoma%2014.7-brightgreen.svg" alt="macOS Sonoma 14.7">
+  <img src="https://img.shields.io/badge/OpenCore-1.0.7-blue.svg" alt="OpenCore 1.0.7">
+  <img src="https://img.shields.io/badge/license-MIT-purple.svg" alt="License MIT">
   <br />
   <a href="https://github.com/LeBritow/E480-Hackintosh/releases"><strong>Download now »</strong></a>
   <br />
