@@ -15,8 +15,6 @@
   <a href="https://github.com/LeBritow/E480-Hackintosh/issues">🐛 Report a bug</a>
   ·
   <a href="https://github.com/LeBritow/E480-Hackintosh/blob/main/CHANGELOG.md">📜 Changelog</a>
-  ·
-  <a href="https://github.com/LeBritow/E480-Hackintosh/blob/main/hackintosh-e480/03-installation/README.md">📖 Install guide</a>
 </p>
 
 OpenCore EFI for the **Lenovo ThinkPad E480** running **macOS Ventura 13.7** and **Sonoma 14.7**. Everything here was verified on my own E480 (i5-8250U, UHD 620, 24 GB, no dGPU) — this is the EFI I boot daily.
