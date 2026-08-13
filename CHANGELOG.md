@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.2.0
+
+- **SMBIOS now placeholders** (`AAAA...`) matching the T440p repo convention — validated with `ocvalidate` 1.0.7 (0 issues)
+- Added `scripts/` (macrecovery — recovery partition download utility)
+- Docs restructured in the numbered style of the T440p repo: `hackintosh-e480/01-specifications` … `06-credits`
+- New `hackintosh-e480/05-open-core-config/` — full config reference + key values explained
+- README rewritten to the T440p standard (status table, disclaimer, releases, kext versions)
+
 ## v1.1.0
 
 - Documented support for **macOS Sonoma 14.7** (tested: App Store upgrade, no EFI changes)

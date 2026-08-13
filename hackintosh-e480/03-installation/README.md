@@ -59,7 +59,7 @@ This generates the `com.apple.recovery.boot/` folder with `BaseSystem.dmg` and `
 
 ## Step 4 — Post-install
 
-Follow the [post-install guide](post-install.md):
+Follow the [post-install guide](../04-post-install/README.md):
 
 1. Generate your own SMBIOS
 2. Copy the EFI to the internal disk

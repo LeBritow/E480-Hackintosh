@@ -1,20 +1,34 @@
-# ThinkPad E480 Hackintosh (macOS Ventura / Sonoma)
+# E480 Hackintosh — macOS Ventura / Sonoma via OpenCore
 
-OpenCore EFI for the **Lenovo ThinkPad E480** (i5-8250U / i5-8550U) running **macOS Ventura 13.7** and **Sonoma 14.7**.
+OpenCore EFI for the **Lenovo ThinkPad E480** running **macOS Ventura 13.7** and **Sonoma 14.7**. Everything here was verified on my own E480 (i5-8250U, UHD 620, 24 GB, no dGPU) — this is the EFI I boot daily.
 
-## Disclaimer
-
-This repository is for educational purposes only. macOS is proprietary software owned by Apple Inc. You must have a legally acquired license to use it. No commercial or piracy support is provided.
+> **SMBIOS notice:** All SMBIOS data in this repository are **placeholders** (`AAAAAAAA...`). Before using the EFI, **generate your own values with GenSMBIOS** — a public serial number can cause iMessage/FaceTime blacklisting.
 
 ## Status
-
-Functional and tested on an E480 with **i5-8250U** + **Intel UHD Graphics 620**. The whole EFI was updated and validated against OpenCore 1.0.7 (`ocvalidate`: 0 issues).
 
 | Item | Detail |
 |:---|:---|
 | Bootloader | OpenCore 1.0.7 |
 | macOS | Ventura 13.7 and Sonoma 14.7 (both tested) |
-| SMBIOS | MacBookPro15,4 |
+| SMBIOS | `MacBookPro15,4` |
+| Validation | `ocvalidate` (OC 1.0.7): 0 issues |
+
+## What works / what doesn't
+
+| Component | Status |
+|:---|:---|
+| Graphics | ✅ Full acceleration — UHD 620 faked as HD 620 (3072 MB) |
+| Wi-Fi / Ethernet | ✅ Intel WiFi (AirportItlwm), Realtek RTL8111 |
+| Audio | ✅ Conexant CX20753/4 (AppleALC, `layout-id: 15`) |
+| Bluetooth | ✅ Working (IntelBluetoothFirmware) — ⚠️ AirDrop/Handoff partially broken (Intel limitation) |
+| Trackpad / TrackPoint / keyboard | ✅ VoodooRMI + VoodooPS2 |
+| Brightness keys | ✅ BrightnessKeys |
+| Battery | ✅ SMCBatteryManager |
+| Sleep / hibernation | ✅ HibernationFixup |
+| USB | ✅ USBMap |
+| Camera | ✅ |
+| HDMI | ✅ through iGPU (display works; resolution depends on your panel/cable) |
+| dGPU models (RX 550) | ⚠️ **Not supported by this repo** — it targets the iGPU-only E480. Hybrid units need an extra SSDT to disable the dGPU. |
 
 ## Tested hardware
 
@@ -24,92 +38,41 @@ Functional and tested on an E480 with **i5-8250U** + **Intel UHD Graphics 620**.
 | iGPU | Intel UHD Graphics 620 (faked as HD 620) |
 | RAM | 24 GB DDR4 |
 | dGPU | None (iGPU-only model) |
-| SSD | NVMe / SATA (both work) |
-| Audio | Conexant CX20753/4 (`layout-id: 15`) |
-| Ethernet | Realtek RTL8111/8168 |
+| Storage | NVMe / SATA SSD |
 | WiFi | Intel Wireless-AC 3165 |
-| Bluetooth | Intel (on-board) |
-| Trackpad/TrackPoint | PS/2 + SMBus |
+| Audio | Conexant CX20753/4 |
 
-## What works
+Full specs: [`hackintosh-e480/01-specifications/`](hackintosh-e480/01-specifications/specs.md)
 
-- ✅ Graphics acceleration (UHD 620 faked as HD 620, 3072 MB framebuffer)
-- ✅ Internal speakers and headphone/mic combo (AppleALC `layout-id: 15`)
-- ✅ Intel WiFi (AirportItlwm)
-- ✅ Bluetooth (IntelBluetoothFirmware)
-- ✅ Trackpad, TrackPoint and keyboard (VoodooRMI + VoodooPS2)
-- ✅ Brightness keys (BrightnessKeys)
-- ✅ Ethernet (RealtekRTL8111)
-- ✅ Battery (SMCBatteryManager)
-- ✅ Sleep / hibernation (HibernationFixup)
-- ✅ USB (USBMap)
-- ✅ Built-in camera
-- ✅ HDMI through iGPU (2K@60Hz / 4K@30Hz)
-- ⚠️ AirDrop/Handoff partially working (Intel WiFi limitation)
+## Quick start
 
-## What doesn't work
+1. **Generate your own SMBIOS** — see [SMBIOS section](#generate-your-own-smbios) below.
+2. **Set the BIOS** as in [`hackintosh-e480/02-bios-settings/`](hackintosh-e480/02-bios-settings/README.md) (UEFI Only, Secure Boot disabled, AHCI).
+3. **Create the installer USB** — [`hackintosh-e480/03-installation/`](hackintosh-e480/03-installation/README.md) (uses `scripts/macrecovery.py`).
+4. **Install** — same guide.
+5. **Post-install** — [`hackintosh-e480/04-post-install/`](hackintosh-e480/04-post-install/README.md) (move the EFI to the internal disk, clean up boot args).
 
-- ❌ AirDrop from iPhone to Mac may fail (Intel limitation)
-- ❌ `Insert` key (not present on the Magic Keyboard)
-- ⚠️ **dGPU models (RX 550 / Radeon) are not supported** — this repo targets the iGPU-only E480. If your unit has the AMD dGPU, an extra SSDT to disable it will be required.
+## Generate your own SMBIOS
 
-## Prerequisites
-
-- USB stick (≥ 8 GB)
-- macOS Ventura installer (via `macrecovery` or full download)
-- EFI from this repository
-
-## Usage
-
-### 1. Prepare the USB stick
-
-1. Format the USB stick as **FAT32** (MS-DOS) with **GPT/GUID** scheme.
-2. Create `EFI` and `com.apple.recovery.boot` folders at the root.
-3. Copy the `EFI` folder from this repository into the USB stick.
-4. Generate the installer:
-   ```sh
-   python macrecovery.py -b Mac-B4831CEBD52A0C4C download -os latest
-   ```
-   Copy the contents of `com.apple.recovery.boot/` to the USB stick.
-
-### 2. BIOS settings
-
-- **Security** → **Intel SGX**: `Software Controlled`
-- **Startup** → **UEFI/Legacy Boot**: `Both`, priority **UEFI First**
-- **Startup** → **Quick Boot**: `Enabled`
-
-### 3. Install
-
-1. Boot from the USB stick (F12 menu → USB).
-2. In the picker, choose the installer entry.
-3. **Disk Utility** → Erase the internal disk as **APFS** / **GUID**.
-4. **Install macOS** → select the internal disk.
-5. Keep the USB stick connected through all reboots (one of them boots back to the USB stick — that's normal).
-
-### 4. Post-install
-
-After installation, mount the EFI partition of the **internal disk** and copy the `EFI` folder to it:
+The EFI ships with placeholder values. On a Mac with [GenSMBIOS](https://github.com/corpnewt/GenSMBIOS):
 
 ```sh
-diskutil mount disk0s1
+cd GenSMBIOS
+python3 genSMBIOS.command
+# pick MacBookPro15,4 → copy the Serial / Board Serial / UUID it prints
 ```
 
-Copy `EFI/` from the USB stick to the internal disk's EFI partition. Now macOS can boot without the USB stick.
+Write the values into `EFI/OC/config.plist` → `PlatformInfo → Generic`:
 
-> ⚠️ **IMPORTANT:** generate your **own** SMBIOS and edit the `config.plist` (see below). This repository does **not** include a valid serial/MLB/UUID — using someone else's will break iMessage/FaceTime.
+| Key | Value |
+|:---|:---|
+| `SystemProductName` | `MacBookPro15,4` |
+| `SystemSerialNumber` | *your generated serial* |
+| `MLB` | *your generated Board Serial* |
+| `SystemUUID` | *your generated UUID* |
+| `ROM` | your **real** Ethernet MAC address (stable value) |
 
-## Generate your own SMBIOS (required)
-
-```sh
-python macserial -m MacBookPro15,4
-```
-
-Edit `PlatformInfo → Generic` in the `config.plist` (use ProperTree with OC Snapshots):
-
-- `MLB` (Board Serial)
-- `SystemSerialNumber`
-- `SystemUUID`
-- `ROM`
+Each install must use a **fresh set** — never reuse a serial already in use (iCloud/iMessage risk).
 
 ## EFI layout
 
@@ -120,7 +83,7 @@ EFI/
 └── OC/
     ├── ACPI/            # SSDT-EC-USBX-LAPTOP, SSDT-PLUG-DRTNIA, SSDT-PNLF, SSDT-XOSI
     ├── Drivers/         # HfsPlus, OpenRuntime
-    ├── Kexts/           # Lilu, VirtualSMC, WhateverGreen, AppleALC, etc.
+    ├── Kexts/           # 22 kexts (see table below)
     ├── Tools/           # OpenShell, CleanNvram
     ├── config.plist
     └── OpenCore.efi
@@ -151,17 +114,37 @@ EFI/
 ## Updating macOS
 
 - **Ventura 13.x / Sonoma 14.x**: System Settings → General → Software Update.
-- **Install Sonoma straight from the App Store**: with Ventura installed, search for "macOS Sonoma" in the App Store and click **Get/Install** — the installer downloads and reboots on its own. The same applies to other supported macOS versions. Back up first and keep OC/kexts up to date (this EFI supports Ventura, Sonoma and Sequoia).
+- **Install Sonoma from the App Store**: with Ventura installed, search for "macOS Sonoma" and click **Get** — it downloads and reboots on its own. Back up first and keep OC/kexts up to date (this EFI supports Ventura and Sonoma).
+
+## Repository layout
+
+```
+EFI/                     OpenCore EFI — placeholder SMBIOS (OC 1.0.7)
+scripts/                 Recovery download utilities (macrecovery)
+hackintosh-e480/         Full project documentation
+  ├── 01-specifications/
+  ├── 02-bios-settings/
+  ├── 03-installation/
+  ├── 04-post-install/
+  ├── 05-open-core-config/    config.plist + key values explained
+  └── 06-credits/
+```
+
+## Releases
+
+Ready-to-use EFI zips are published under [Releases](https://github.com/LeBritow/E480-Hackintosh/releases). **Generate your own SMBIOS** before using any of them.
+
+## Contributing
+
+Found a fix, a better kext, or a tip for this hardware? Open an **issue** or a **pull request**.
+
+## Disclaimer
+
+This project is provided **as is**, without warranty of any kind. Installing macOS on non-Apple hardware may violate your local software license agreements, and could damage hardware or data. I am **not responsible for any damages**, lost data, or broken equipment that result from using this repository. You follow these instructions entirely at your own risk.
 
 ## Credits
 
-- [OpenCore Team](https://github.com/acidanthera) — OpenCore and kexts
-- [Dortania](https://dortania.github.io/OpenCore-Install-Guide/) — guide
-- [SukkaW](https://github.com/SukkaW/ThinkPad-E480-Hackintosh) — original reference EFI
-
-## Support
-
-Open an [issue](https://github.com/LeBritow/E480-Hackintosh/issues) with a boot log (`-v`) if something fails.
+See [`hackintosh-e480/06-credits/`](hackintosh-e480/06-credits/README.md).
 
 ---
 
