@@ -1,6 +1,6 @@
 # E480 Hackintosh — macOS Ventura / Sonoma via OpenCore
 
-<p align="center">
+<p align="left">
   💻 <strong>ThinkPad E480 · OpenCore Edition</strong>
   <br />
   <img src="https://img.shields.io/badge/OpenCore-1.0.7-informational.svg" alt="OpenCore 1.0.7">
