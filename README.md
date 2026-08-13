@@ -7,7 +7,7 @@
   <img src="https://img.shields.io/badge/status-maintained-success.svg" alt="Status: Maintained">
 </p>
 
-OpenCore EFI for the **Lenovo ThinkPad E480** (i5-8250U, UHD 620, 24 GB RAM, no dGPU) — verified on my own machine running **Ventura 13.7** and **Sonoma 14.7**.
+OpenCore EFI for the **Lenovo ThinkPad E480** — verified on my own machine running **Ventura 13.7** and **Sonoma 14.7**.
 
 > **⚠️ Disclaimer:** This project is provided **as is**, without warranty of any kind. I am **not responsible** for any damages, lost data, or broken equipment resulting from its use. You use it entirely at your own risk.
 >
