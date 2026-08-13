@@ -1,90 +1,90 @@
-# Instalação do macOS Ventura / Sonoma no E480
+# Installing macOS Ventura / Sonoma on the E480
 
-Guia passo a passo para instalar o macOS no ThinkPad E480 usando esta EFI. Testado com **Ventura 13.7** (instalação limpa) e **Sonoma 14.7** (upgrade pela App Store).
+Step-by-step guide to install macOS on the ThinkPad E480 using this EFI. Tested with **Ventura 13.7** (clean install) and **Sonoma 14.7** (App Store upgrade).
 
-## O que você precisa
+## What you need
 
 - **Hardware:** ThinkPad E480 (i5-8250U/i5-8550U), 8 GB+ RAM, SSD
-- **Pendrive USB** (≥ 8 GB)
-- **Acesso a um macOS** (opcional mas ajuda) ou um sistema com `python3`
-- **BIOS configurada** (veja abaixo)
+- **USB stick** (≥ 8 GB)
+- **Access to a macOS** (optional but helpful) or a system with `python3`
+- **BIOS configured** (see below)
 
-## Passo 1 — Configurar BIOS
+## Step 1 — Configure BIOS
 
-Reinicie e entre na BIOS (`F1`):
+Reboot and enter the BIOS (`F1`):
 
-| Configuração | Valor |
+| Setting | Value |
 |:---|:---|
 | Security → Intel SGX | Software Controlled |
 | Startup → Boot Mode | Both (UEFI + Legacy) |
 | Startup → Boot Priority | UEFI First |
 | Startup → Quick Boot | Enabled |
 
-## Passo 2 — Criar o pendrive instalador
+## Step 2 — Create the installer USB
 
-### No macOS
+### On macOS
 
 ```sh
-# 1. Baixe o macOS Ventura
+# 1. Download macOS Ventura
 softwareupdate --list-all
 
-# 2. Ou use o script de recovery (mais rápido):
+# 2. Or use the recovery script (faster):
 cd Utilities/macrecovery
 python3 macrecovery.py -b Mac-B4831CEBD52A0C4C download -os latest
 ```
 
-Isso gera a pasta `com.apple.recovery.boot/` com `BaseSystem.dmg` e `BaseSystem.chunklist`.
+This generates the `com.apple.recovery.boot/` folder with `BaseSystem.dmg` and `BaseSystem.chunklist`.
 
-### Montar o pendrive
+### Prepare the USB stick
 
-1. **Utilitário de Discos** → apague o pendrive como:
-   - Nome: `USB`
-   - Formato: **MS-DOS (FAT)**
-   - Esquema: **GUID Partition Map**
-2. Monte o pendrive e crie as pastas `EFI` e `com.apple.recovery.boot` na raiz.
-3. Copie o conteúdo de `com.apple.recovery.boot/` para a pasta homônima no pendrive.
-4. Copie a pasta `EFI/` deste repositório para a raiz do pendrive.
+1. **Disk Utility** → erase the USB stick as:
+   - Name: `USB`
+   - Format: **MS-DOS (FAT)**
+   - Scheme: **GUID Partition Map**
+2. Mount the USB stick and create the `EFI` and `com.apple.recovery.boot` folders at its root.
+3. Copy the contents of `com.apple.recovery.boot/` into the matching folder on the USB stick.
+4. Copy the `EFI/` folder from this repository to the USB stick root.
 
-## Passo 3 — Instalar
+## Step 3 — Install
 
-1. Conecte o pendrive e ligue o E480.
-2. Abra o boot menu (`F12`) e escolha o pendrive USB.
-3. No picker do OpenCore, escolha a entrada do instalador (ex.: "macOS Base System").
-4. **Utilitários → Utilitário de Discos**:
-   - Selecione o disco interno (CUIDADO: não apague o pendrive!)
-   - Apagar → Nome `Macintosh HD`, Formato **APFS**, Esquema **GUID**
-5. Feche o Utilitário de Discos → **Instalar o macOS** → selecione `Macintosh HD`.
-6. A máquina reinicia várias vezes. **Deixe o pendrive conectado em TODAS as reinicializações** — o OpenCore no pendrive é quem continua o boot.
-7. Se o picker parar de mostrar o instalador e só mostrar o disco, basta escolher a entrada do disco (a instalação continua).
+1. Plug the USB stick in and power on the E480.
+2. Open the boot menu (`F12`) and select the USB stick.
+3. In the OpenCore picker, choose the installer entry (e.g. "macOS Base System").
+4. **Utilities → Disk Utility**:
+   - Select the internal disk (careful: do NOT erase the USB stick!)
+   - Erase → Name `Macintosh HD`, Format **APFS**, Scheme **GUID**
+5. Close Disk Utility → **Install macOS** → select `Macintosh HD`.
+6. The machine reboots several times. **Keep the USB stick connected for ALL reboots** — the OpenCore on the USB stick keeps the boot going.
+7. If the picker stops showing the installer and only shows the disk, just pick the disk entry (the installation continues).
 
-## Passo 4 — Pós-instalação
+## Step 4 — Post-install
 
-Siga o [guia de pós-instalação](post-install.md):
+Follow the [post-install guide](post-install.md):
 
-1. Gerar SMBIOS próprio
-2. Copiar a EFI para o disco interno
-3. Remover `-v` do boot
+1. Generate your own SMBIOS
+2. Copy the EFI to the internal disk
+3. Remove `-v` from boot args
 
-## Passo 5 — Upgrade para Sonoma (opcional)
+## Step 5 — Upgrade to Sonoma (optional)
 
-Com o Ventura instalado e funcionando, o Sonoma sobe **sem pendrive**:
+With Ventura installed and working, Sonoma upgrades **without the USB stick**:
 
-1. Faça backup (Time Machine).
-2. Ajustes → Geral → Atualização de Software, **ou** pesquise por "macOS Sonoma" na **App Store** e clique em **Obter**.
-3. O instalador baixa (~12 GB), reinicia sozinho e faz tudo — a EFI atual (OC 1.0.7 + kexts novos) já suporta Sonoma sem mudanças.
+1. Make a backup (Time Machine).
+2. System Settings → General → Software Update, **or** search for "macOS Sonoma" in the **App Store** and click **Get**.
+3. The installer downloads (~12 GB), reboots on its own and does everything — the current EFI (OC 1.0.7 + up-to-date kexts) already supports Sonoma with no changes.
 
 ## Troubleshooting
 
-| Problema | Solução |
+| Problem | Fix |
 |:---|:---|
-| Kernel panic logo após `EXITBS:START` | Atualizar OpenCore/kexts (esta EFI já está atualizada) |
-| Tela preta | Verifique `boot-args`; tente `igfxonln=1` |
-| Áudio mudo | `alcid=15` já configurado |
-| WiFi não aparece | AirportItlwm precisa da versão certa para o macOS instalado |
-| Fica voltando para o pendrive | Copiou a EFI para o disco interno? (post-install) |
-| iMessage não ativa | Gere serial/MLB/UUID próprios (não use os do repo) |
+| Kernel panic right after `EXITBS:START` | Update OpenCore/kexts (this EFI is already up to date) |
+| Black screen | Check `boot-args`; try `igfxonln=1` |
+| No audio | `alcid=15` is already configured |
+| WiFi missing | AirportItlwm needs the version matching your installed macOS |
+| Keeps booting back to the USB stick | Did you copy the EFI to the internal disk? (post-install) |
+| iMessage won't activate | Generate your own serial/MLB/UUID (don't use the repo's) |
 
-Se nada resolver, abra uma issue com o log:
-1. Adicione `-v` nos `boot-args`
-2. Pressione `F2` no picker do OpenCore para salvar o log (`opencore-YYYY-MM-DD-HHMMSS.txt`)
-3. Anexe o log na issue
+If nothing helps, open an issue with the log:
+1. Add `-v` to `boot-args`
+2. Press `F2` in the OpenCore picker to save the log (`opencore-YYYY-MM-DD-HHMMSS.txt`)
+3. Attach the log to the issue

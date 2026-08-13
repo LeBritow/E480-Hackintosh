@@ -1,67 +1,66 @@
-# Pós-instalação — ThinkPad E480
+# Post-install — ThinkPad E480
 
-## 1. Copiar a EFI para o disco interno
+## 1. Copy the EFI to the internal disk
 
-Depois do sistema instalado e funcionando pelo pendrive:
+Once the system is installed and boots from the USB stick:
 
-1. Monte a partição EFI do disco interno:
+1. Mount the internal disk's EFI partition:
    ```sh
    diskutil mount disk0s1
    ```
-2. Copie a pasta `EFI/` do pendrive para a partição EFI montada.
-3. Reinicie (com o pendrive ainda conectado, por segurança) e confirme que o sistema abre sem o pendrive. Depois pode remover.
+2. Copy the `EFI/` folder from the USB stick to the mounted EFI partition.
+3. Reboot (with the USB stick still connected, just in case) and confirm the system boots without it. Then you can remove it.
 
-## 2. Gerar SMBIOS próprio (IMPORTANTE)
+## 2. Generate your own SMBIOS (IMPORTANT)
 
-O `config.plist` deste repositório vem **sem** serial/MLB/UUID válidos. Para usar iMessage, FaceTime, iCloud etc., gere os seus:
+The `config.plist` in this repository ships **without** valid serial/MLB/UUID. To use iMessage, FaceTime, iCloud etc., generate your own:
 
 ```sh
 # macOS
 python macserial -m MacBookPro15,4
 ```
 
-Abra o `config.plist` no [ProperTree](https://github.com/corpnewt/ProperTree) e use **File → OC Snapshot** (ou faça manualmente):
+Open the `config.plist` in [ProperTree](https://github.com/corpnewt/ProperTree) and use **File → OC Snapshot** (or edit manually):
 
 - `PlatformInfo → Generic → SystemSerialNumber`
 - `PlatformInfo → Generic → MLB`
 - `PlatformInfo → Generic → SystemUUID`
-- `PlatformInfo → Generic → ROM` (12 hex, ex.: `A1B2C3D4E5F6`)
+- `PlatformInfo → Generic → ROM` (12 hex digits, e.g. `A1B2C3D4E5F6`)
 
-> Valide o serial no [site da Apple](https://checkcoverage.apple.com/). Deve retornar "Por favor, insira um número de série válido" — ou seja, um serial **não usado** por ninguém.
+> Validate the serial on the [Apple site](https://checkcoverage.apple.com/). It should return "Please enter a valid serial number" — meaning an unused serial.
 
-## 3. Remover boot verbose
+## 3. Remove verbose boot
 
-O `config.plist` traz `boot-args = -v` para depuração. Para boot "limpo":
+The `config.plist` ships with `boot-args = -v` for debugging. For a clean boot:
 
-1. Ajustes → Usuários e Grupos → Opções de Login → mude `-v` em `boot-args` **no config.plist** (não no NVRAM).
-2. Ou edite `NVRAM → Add → 7C436110-... → boot-args` no ProperTree: `alcid=15` (sem `-v`).
-3. Limpe o NVRAM depois (veja abaixo).
+1. Edit `NVRAM → Add → 7C436110-... → boot-args` in ProperTree: `alcid=15` (drop `-v`).
+2. Reset NVRAM afterwards (see below).
 
-## 4. Limpar NVRAM (quando precisar)
+## 4. Reset NVRAM (when needed)
 
-No picker do OpenCore, pressione `Espaço` para mostrar ferramentas e escolha **CleanNvram**. Útil quando:
-- Boot travando após mudança de config
-- Problemas de áudio/som do boot
-- Vars de outro SMBIOS
+In the OpenCore picker, press `Space` to reveal tools and choose **CleanNvram**. Useful when:
+- Boot hangs after a config change
+- Boot audio/sound issues
+- Leftover vars from another SMBIOS
 
-## 5. Sleep e hibernação
+## 5. Sleep and hibernation
 
-- Sleep normal funciona (HibernationFixup).
-- Para hibernação 3/25, ajuste:
+- Normal sleep works (HibernationFixup).
+- For hibernation modes 3/25, adjust:
   ```sh
   sudo pmset -a hibernatemode 0
   ```
-- O "black screen no wake" já tem `ReservedMemory` desabilitado por padrão; se ocorrer, ative o `Fix black screen on wake` no `UEFI → ReservedMemory`.
+- "Black screen on wake" has `ReservedMemory` disabled by default; if it happens, enable the `Fix black screen on wake` entry under `UEFI → ReservedMemory`.
 
-## 6. Atualizações
+## 6. Updates
 
-- **Ventura 13.x**: Ajustes → Geral → Atualização de Software. Tudo tranquilo.
-- **Upgrade para Sonoma/Sequoia**: 
-  1. Backup (Time Machine)
-  2. Atualize OpenCore + kexts para as últimas versões
-  3. Confirme que o `config.plist` continua validando (`ocvalidate`)
-  4. Só então rode o upgrade
+- **Ventura 13.x / Sonoma 14.x**: System Settings → General → Software Update.
+- **Upgrade to a newer macOS**:
+  1. Back up (Time Machine)
+  2. Update OpenCore + kexts to the latest versions
+  3. Make sure `config.plist` still passes (`ocvalidate`)
+  4. Then run the upgrade
 
-## 7. Backup do EFI
+## 7. Backup the EFI
 
-Sempre guarde uma cópia da pasta `EFI` funcionando (num pendrive ou em outro OS). Vai te salvar.
+Always keep a working copy of the `EFI` folder (on a USB stick or another OS). It will save you.
