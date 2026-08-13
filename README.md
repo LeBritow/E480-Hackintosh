@@ -1,24 +1,22 @@
 # E480 Hackintosh — macOS Ventura / Sonoma via OpenCore
 
 <p align="center">
-  <strong>Status:</strong> Maintained
+  💻 <strong>ThinkPad E480 · OpenCore Edition</strong>
   <br />
-  <strong>Version:</strong> 1.2.0
+  <img src="https://img.shields.io/badge/OpenCore-1.0.7-informational.svg" alt="OpenCore 1.0.7">
+  <img src="https://img.shields.io/badge/macOS-Ventura%2013.7-success.svg" alt="macOS Ventura 13.7">
+  <img src="https://img.shields.io/badge/macOS-Sonoma%2014.7-success.svg" alt="macOS Sonoma 14.7">
   <br />
-  <strong>Bootloader:</strong> OpenCore 1.0.7
+  <img src="https://img.shields.io/badge/SMBIOS-MacBookPro15%2C4-informational.svg" alt="SMBIOS MacBookPro15,4">
+  <img src="https://img.shields.io/badge/status-maintained-success.svg" alt="Status: Maintained">
   <br />
-  <img src="https://img.shields.io/badge/macOS-Ventura%2013.7-brightgreen.svg" alt="macOS Ventura 13.7">
-  <img src="https://img.shields.io/badge/macOS-Sonoma%2014.7-brightgreen.svg" alt="macOS Sonoma 14.7">
-  <img src="https://img.shields.io/badge/OpenCore-1.0.7-blue.svg" alt="OpenCore 1.0.7">
-  <img src="https://img.shields.io/badge/license-MIT-purple.svg" alt="License MIT">
+  <a href="https://github.com/LeBritow/E480-Hackintosh/releases"><strong>⬇️ Download the EFI</strong></a>
   <br />
-  <a href="https://github.com/LeBritow/E480-Hackintosh/releases"><strong>Download now »</strong></a>
-  <br />
-  <a href="https://github.com/LeBritow/E480-Hackintosh/issues">Report Bug</a>
+  <a href="https://github.com/LeBritow/E480-Hackintosh/issues">🐛 Report a bug</a>
   ·
-  <a href="https://github.com/LeBritow/E480-Hackintosh/blob/main/CHANGELOG.md">View Changelog</a>
+  <a href="https://github.com/LeBritow/E480-Hackintosh/blob/main/CHANGELOG.md">📜 Changelog</a>
   ·
-  <a href="https://github.com/LeBritow/E480-Hackintosh/blob/main/hackintosh-e480/03-installation/README.md">Install Guide</a>
+  <a href="https://github.com/LeBritow/E480-Hackintosh/blob/main/hackintosh-e480/03-installation/README.md">📖 Install guide</a>
 </p>
 
 OpenCore EFI for the **Lenovo ThinkPad E480** running **macOS Ventura 13.7** and **Sonoma 14.7**. Everything here was verified on my own E480 (i5-8250U, UHD 620, 24 GB, no dGPU) — this is the EFI I boot daily.
