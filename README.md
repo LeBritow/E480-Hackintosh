@@ -2,7 +2,13 @@
 
 OpenCore EFI for the **Lenovo ThinkPad E480** running **macOS Ventura 13.7** and **Sonoma 14.7**. Everything here was verified on my own E480 (i5-8250U, UHD 620, 24 GB, no dGPU) — this is the EFI I boot daily.
 
+> **⚠️ Disclaimer:** This project is provided **as is**, without warranty of any kind. Installing macOS on non-Apple hardware may violate your local software license agreements and could damage hardware or data. I am **not responsible for any damages**, lost data, or broken equipment resulting from the use of this repository. You use it entirely at your own risk.
+
 > **SMBIOS notice:** All SMBIOS data in this repository are **placeholders** (`AAAAAAAA...`). Before using the EFI, **generate your own values with GenSMBIOS** — a public serial number can cause iMessage/FaceTime blacklisting.
+
+## Screenshots
+
+*(Photos coming soon — up to 4 screenshots in `assets/screenshots/`.)*
 
 ## Status
 
@@ -121,6 +127,7 @@ EFI/
 ```
 EFI/                     OpenCore EFI — placeholder SMBIOS (OC 1.0.7)
 scripts/                 Recovery download utilities (macrecovery)
+assets/screenshots/      Screenshots
 hackintosh-e480/         Full project documentation
   ├── 01-specifications/
   ├── 02-bios-settings/
@@ -137,10 +144,6 @@ Ready-to-use EFI zips are published under [Releases](https://github.com/LeBritow
 ## Contributing
 
 Found a fix, a better kext, or a tip for this hardware? Open an **issue** or a **pull request**.
-
-## Disclaimer
-
-This project is provided **as is**, without warranty of any kind. Installing macOS on non-Apple hardware may violate your local software license agreements, and could damage hardware or data. I am **not responsible for any damages**, lost data, or broken equipment that result from using this repository. You follow these instructions entirely at your own risk.
 
 ## Credits
 
