@@ -1,6 +1,6 @@
-# ThinkPad E480 Hackintosh (macOS Ventura)
+# ThinkPad E480 Hackintosh (macOS Ventura / Sonoma)
 
-OpenCore EFI para o **Lenovo ThinkPad E480** (i5-8250U / i5-8550U) rodando **macOS Ventura 13.7**.
+OpenCore EFI para o **Lenovo ThinkPad E480** (i5-8250U / i5-8550U) rodando **macOS Ventura 13.7** e **Sonoma 14.7**.
 
 ## Aviso legal
 
@@ -13,7 +13,7 @@ Funcional e testado no E480 com **i5-8250U** + **Intel UHD Graphics 620**. Toda 
 | Item | Detalhe |
 |:---|:---|
 | Bootloader | OpenCore 1.0.7 |
-| macOS | Ventura 13.7 (atualizações via Software Update) |
+| macOS | Ventura 13.7 e Sonoma 14.7 (testados) |
 | SMBIOS | MacBookPro15,4 |
 
 ## Especificações do notebook testado
@@ -149,8 +149,8 @@ EFI/
 
 ## Atualizando o macOS
 
-- **Dentro do Ventura (13.x)**: Ajustes → Geral → Atualização de Software.
-- **Upgrade maior (Sonoma/Sequoia)**: antes, atualize o OpenCore e os kexts para as versões mais recentes e faça backup. O EFI atual aguenta Ventura, Sonoma e Sequoia.
+- **Ventura 13.x / Sonoma 14.x**: Ajustes → Geral → Atualização de Software.
+- **Instalar o Sonoma direto pela App Store**: com o Ventura instalado, pesquise por "macOS Sonoma" na App Store e clique em **Obter/Instalar** — o instalador baixa e reinicia sozinho. O mesmo vale para outros macOS compatíveis. Faça backup antes e mantenha o OC/kexts atualizados (o EFI atual aguenta Ventura, Sonoma e Sequoia).
 
 ## Créditos
 

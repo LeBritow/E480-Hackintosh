@@ -1,6 +1,6 @@
-# Instalação do macOS Ventura no E480
+# Instalação do macOS Ventura / Sonoma no E480
 
-Guia passo a passo para instalar o macOS Ventura no ThinkPad E480 usando esta EFI.
+Guia passo a passo para instalar o macOS no ThinkPad E480 usando esta EFI. Testado com **Ventura 13.7** (instalação limpa) e **Sonoma 14.7** (upgrade pela App Store).
 
 ## O que você precisa
 
@@ -64,6 +64,14 @@ Siga o [guia de pós-instalação](post-install.md):
 1. Gerar SMBIOS próprio
 2. Copiar a EFI para o disco interno
 3. Remover `-v` do boot
+
+## Passo 5 — Upgrade para Sonoma (opcional)
+
+Com o Ventura instalado e funcionando, o Sonoma sobe **sem pendrive**:
+
+1. Faça backup (Time Machine).
+2. Ajustes → Geral → Atualização de Software, **ou** pesquise por "macOS Sonoma" na **App Store** e clique em **Obter**.
+3. O instalador baixa (~12 GB), reinicia sozinho e faz tudo — a EFI atual (OC 1.0.7 + kexts novos) já suporta Sonoma sem mudanças.
 
 ## Troubleshooting
 
