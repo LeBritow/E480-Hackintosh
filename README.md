@@ -120,21 +120,6 @@ EFI/
 - **Ventura 13.x / Sonoma 14.x**: System Settings → General → Software Update.
 - **Install Sonoma from the App Store**: with Ventura installed, search for "macOS Sonoma" and click **Get** — it downloads and reboots on its own. Back up first and keep OC/kexts up to date (this EFI supports Ventura and Sonoma).
 
-## Repository layout
-
-```
-EFI/                     OpenCore EFI — placeholder SMBIOS (OC 1.0.7)
-scripts/                 Recovery download utilities (macrecovery)
-assets/screenshots/      Screenshots
-hackintosh-e480/         Full project documentation
-  ├── 01-specifications/
-  ├── 02-bios-settings/
-  ├── 03-installation/
-  ├── 04-post-install/
-  ├── 05-open-core-config/    config.plist + key values explained
-  └── 06-credits/
-```
-
 ## Releases
 
 Ready-to-use EFI zips are published under [Releases](https://github.com/LeBritow/E480-Hackintosh/releases). **Generate your own SMBIOS** before using any of them.
