@@ -1,5 +1,10 @@
 # E480 Hackintosh — macOS Ventura / Sonoma via OpenCore
 
+[![macOS](https://img.shields.io/badge/macOS-Ventura%2013.7-brightgreen.svg)](https://developer.apple.com/documentation/macos-release-notes)
+[![macOS](https://img.shields.io/badge/macOS-Sonoma%2014.7-brightgreen.svg)](https://developer.apple.com/documentation/macos-release-notes)
+[![OpenCore](https://img.shields.io/badge/OpenCore-1.0.7-blue)](https://github.com/acidanthera/OpenCorePkg)
+[![License](https://img.shields.io/badge/license-MIT-purple)](/LICENSE)
+
 OpenCore EFI for the **Lenovo ThinkPad E480** running **macOS Ventura 13.7** and **Sonoma 14.7**. Everything here was verified on my own E480 (i5-8250U, UHD 620, 24 GB, no dGPU) — this is the EFI I boot daily.
 
 > **⚠️ Disclaimer:** This project is provided **as is**, without warranty of any kind. Installing macOS on non-Apple hardware may violate your local software license agreements and could damage hardware or data. I am **not responsible for any damages**, lost data, or broken equipment resulting from the use of this repository. You use it entirely at your own risk.
