@@ -1,40 +1,26 @@
 # E480 Hackintosh — macOS Ventura / Sonoma via OpenCore
 
 <p align="left">
-  💻 <strong>ThinkPad E480 · OpenCore Edition</strong>
-  <br />
   <img src="https://img.shields.io/badge/OpenCore-1.0.7-informational.svg" alt="OpenCore 1.0.7">
   <img src="https://img.shields.io/badge/macOS-Ventura%2013.7-success.svg" alt="macOS Ventura 13.7">
   <img src="https://img.shields.io/badge/macOS-Sonoma%2014.7-success.svg" alt="macOS Sonoma 14.7">
-  <br />
-  <img src="https://img.shields.io/badge/SMBIOS-MacBookPro15%2C4-informational.svg" alt="SMBIOS MacBookPro15,4">
   <img src="https://img.shields.io/badge/status-maintained-success.svg" alt="Status: Maintained">
-  <br />
   <a href="https://github.com/LeBritow/E480-Hackintosh/releases"><strong>⬇️ Download the EFI</strong></a>
-  <br />
+  ·
   <a href="https://github.com/LeBritow/E480-Hackintosh/issues">🐛 Report a bug</a>
   ·
   <a href="https://github.com/LeBritow/E480-Hackintosh/blob/main/CHANGELOG.md">📜 Changelog</a>
 </p>
 
-OpenCore EFI for the **Lenovo ThinkPad E480** running **macOS Ventura 13.7** and **Sonoma 14.7**. Everything here was verified on my own E480 (i5-8250U, UHD 620, 24 GB, no dGPU) — this is the EFI I boot daily.
+OpenCore EFI for the **Lenovo ThinkPad E480** (i5-8250U, UHD 620, 24 GB RAM, no dGPU) — verified on my own machine running **Ventura 13.7** and **Sonoma 14.7**.
 
-> **⚠️ Disclaimer:** This project is provided **as is**, without warranty of any kind. Installing macOS on non-Apple hardware may violate your local software license agreements and could damage hardware or data. I am **not responsible for any damages**, lost data, or broken equipment resulting from the use of this repository. You use it entirely at your own risk.
-
-> **SMBIOS notice:** All SMBIOS data in this repository are **placeholders** (`AAAAAAAA...`). Before using the EFI, **generate your own values with GenSMBIOS** — a public serial number can cause iMessage/FaceTime blacklisting.
+> **⚠️ Disclaimer:** This project is provided **as is**, without warranty of any kind. I am **not responsible** for any damages, lost data, or broken equipment resulting from its use. You use it entirely at your own risk.
+>
+> **🔑 SMBIOS:** All SMBIOS data are **placeholders** (`AAAAAAAA...`). Generate your own values with GenSMBIOS before booting — a public serial can cause iMessage/FaceTime blacklisting.
 
 ## Screenshots
 
 *(Photos coming soon — up to 4 screenshots in `assets/screenshots/`.)*
-
-## Status
-
-| Item | Detail |
-|:---|:---|
-| Bootloader | OpenCore 1.0.7 |
-| macOS | Ventura 13.7 and Sonoma 14.7 (both tested) |
-| SMBIOS | `MacBookPro15,4` |
-| Validation | `ocvalidate` (OC 1.0.7): 0 issues |
 
 ## What works / what doesn't
 
