@@ -6,10 +6,6 @@
   <img src="https://img.shields.io/badge/macOS-Sonoma%2014.7-success.svg" alt="macOS Sonoma 14.7">
   <img src="https://img.shields.io/badge/status-maintained-success.svg" alt="Status: Maintained">
   <a href="https://github.com/LeBritow/E480-Hackintosh/releases"><strong>⬇️ Download the EFI</strong></a>
-  ·
-  <a href="https://github.com/LeBritow/E480-Hackintosh/issues">🐛 Report a bug</a>
-  ·
-  <a href="https://github.com/LeBritow/E480-Hackintosh/blob/main/CHANGELOG.md">📜 Changelog</a>
 </p>
 
 OpenCore EFI for the **Lenovo ThinkPad E480** (i5-8250U, UHD 620, 24 GB RAM, no dGPU) — verified on my own machine running **Ventura 13.7** and **Sonoma 14.7**.
